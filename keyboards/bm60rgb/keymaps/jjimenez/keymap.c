@@ -24,8 +24,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL,   KC_LGUI,   KC_LALT,                       KC_SPC,                              KC_RALT, MO(1),   KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [1] = LAYOUT(
-        KC_GRV,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  RESET,
-        _______,     RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, _______, KC_MPLY, KC_VOLD, KC_VOLU, _______,
+        KC_GRV,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,
+        RESET,     RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD, RGB_VAI, RGB_VAD, _______, KC_MPLY, KC_VOLD, KC_VOLU, _______,
         _______,       RGB_M_P, RGB_M_B, RGB_M_R, RGB_M_SW, _______, _______, _______, _______, _______, _______, _______, _______,
         _______,            _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,        KC_PGUP, _______,
         _______,   _______,   _______,                      _______,                              _______, _______, KC_MPRV, KC_PGDN, KC_MNXT
@@ -34,13 +34,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 void set_underglow_color(int red, int green, int blue) {
-    // Underglow leds, 63 (right) - 68 (left)
-    rgb_matrix_set_color(63, red, green, blue);
-    rgb_matrix_set_color(64, red, green, blue);
-    rgb_matrix_set_color(65, red, green, blue);
-    rgb_matrix_set_color(66, red, green, blue);
-    rgb_matrix_set_color(67, red, green, blue);
-    rgb_matrix_set_color(68, red, green, blue);
+    // Underglow leds from 63 (right) to 68 (left)
+    for(int i=63; i<=68; i++) {
+        rgb_matrix_set_color(i, red, green, blue);
+    }
 }
 
 void rgb_matrix_indicators_user(void) {
