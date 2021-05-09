@@ -36,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 void set_underglow_color(int red, int green, int blue) {
     // Underglow leds from 63 (right) to 68 (left)
     for(int i=63; i<=68; i++) {
-        rgb_matrix_set_color(63, red, green, blue);
+        rgb_matrix_set_color(i, red, green, blue);
     }
 }
 
